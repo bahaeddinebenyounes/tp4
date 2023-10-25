@@ -1,0 +1,33 @@
+<div class="container">
+        <div>>
+            <h2>Modifier un vetement :</h2>
+        </div>
+        <form>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>ID vetements</label>
+                <input type="text" [(ngModel)]="currentvetements.idvetements" name="idProduit" class="form-control" readonly>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>Nom de marque vetements</label>
+                <input type="text" [(ngModel)]="currentvetements.nomvetements" name="nomProduit" class="form-control">
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Prix de vetements</label> <input type="number" [(ngModel)]="currentvetements.prixvetements"
+                    name="prixProduit" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>couleur de vetements</label>
+                <input type="text" [(ngModel)]="currentvetements.couleur" name="couleur" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>disponibilité de vetements</label>
+                <input type="text" [(ngModel)]="currentvetements.disponible" name="disponible" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>Date création de vetements</label> <input type="date"
+                    [(ngModel)]="currentvetements.datevetements" name="dateCreation" class="form-control">
+            </div>
+            <div class="mt-2"> <button type="submit" (click)="updatevetements()"class="btn btn-success" routerLink="/vetements">Modifier</button>
+            </div>
+        </form>
+    </div>

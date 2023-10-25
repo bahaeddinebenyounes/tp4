@@ -3,14 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { VetementsComponent } from './vetements/vetements.component';
+import { FormsModule } from '@angular/forms';
+import { AddVetementsComponent } from './add-vetements/add-vetements.component';
+import { UpdateVetementsComponent } from './update-vetements/update-vetements.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VetementsComponent,
+    AddVetementsComponent,
+    UpdateVetementsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
