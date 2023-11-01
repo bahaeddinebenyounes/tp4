@@ -1,3 +1,5 @@
+import { Categorie } from "./categorie.model";
+
 export class vetements 
 {
     idvetements!  : number;
@@ -6,5 +8,5 @@ export class vetements
     prixvetements! : number; 
     datevetements! : Date ;
     disponible!    : string;
-
+    categorie!     :Categorie;
   }
