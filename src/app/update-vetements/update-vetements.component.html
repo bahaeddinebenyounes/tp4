@@ -1,36 +1,37 @@
 <div class="container">
-    <div>>
+    <div>
         <h2>Modifier un vetement :</h2>
     </div>
     <form>
         <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>ID vetements</label>
+            <label>ID </label>
             <input type="text" [(ngModel)]="currentvetements.idvetements" name="idProduit" class="form-control"
                 readonly>
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>Nom de marque vetements</label>
+            <label>Nom de marque </label>
             <input type="text" [(ngModel)]="currentvetements.nomvetements" name="nomProduit" class="form-control">
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>Prix de vetements</label> <input type="number" [(ngModel)]="currentvetements.prixvetements"
+            <label>Prix</label> <input type="number" [(ngModel)]="currentvetements.prixvetements"
                 name="prixProduit" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>couleur de vetements</label>
+            <label>Couleur</label>
             <input type="text" [(ngModel)]="currentvetements.couleur" name="couleur" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>disponibilité de vetements</label>
+            <label>Disponibilité</label>
             <input type="text" [(ngModel)]="currentvetements.disponible" name="disponible" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>Date création de vetements</label> <input type="date" [(ngModel)]="currentvetements.datevetements"
+            <label>Date création</label> <input type="date" [(ngModel)]="currentvetements.datevetements"
                 name="dateCreation" class="form-control">
         </div>
-        <div class="col-sm-4 col-md-4 col-lg-4"> <select class="form-control form-control-lg" id="idCat" name="idCat"
+        <div class="col-sm-4 col-md-4 col-lg-4"> Type 
+            <select class="form-control form-control-lg" id="idCat" name="idCat"
                 [(ngModel)]="updatedCatId">
-                <option *ngFor="let cat of categories" [value]="cat.idCat"> {{cat.nomCat}} </option>
+                <option *ngFor="let cat of Type" [value]="cat.idCat"> {{cat.nomCat}} </option>
             </select> </div>
         <div class="mt-2"> <button type="submit" (click)="updatevetements()" class="btn btn-success"
                 routerLink="/vetements">Modifier</button>

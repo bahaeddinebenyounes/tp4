@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { vetements } from '../model/vetements.model';
-import { Categorie } from '../model/categorie.model';
+import { Type } from '../model/Type.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class vetementsService {
   vetements: vetements[];
-  categories :Categorie[];
+  Type :Type[];
   constructor() {
-    this.categories=[ {idCat : 1, nomCat : "T-shirt"}, {idCat : 2, nomCat : "Robe"},{idCat : 3, nomCat : "Jacket"} ];
+    this.Type=[ {idCat : 1, nomCat : "T-shirt"}, {idCat : 2, nomCat : "Robe"},{idCat : 3, nomCat : "Jacket"} ];
     this.vetements = [
-    { idvetements: 1, nomvetements: "T-shirt : Calvin Klein", prixvetements: 100, couleur: "noir/rouge/blanc", disponible: "disponible", datevetements: new Date("01/14/2020"),categorie : {idCat : 1, nomCat : "T-shirt" }},
-    { idvetements: 2, nomvetements: "Robe : Zara", prixvetements: 499.999, couleur: "noir/rouge", disponible: "disponible", datevetements: new Date("12/17/2022"),categorie : {idCat : 2, nomCat : "Robe"}},
-    { idvetements: 3, nomvetements: "Jackets : The North Face", prixvetements: 150.500, couleur: "noir/bleu/blanc", disponible: "non-disponible", datevetements: new Date("02/20/2023"),categorie : {idCat : 3, nomCat : "Jacket"}} ];
+    { idvetements: 1, nomvetements: "T-shirt : Calvin Klein", prixvetements: 100, couleur: "noir/rouge/blanc", disponible: "disponible", datevetements: new Date("01/14/2020"),Type : {idCat : 1, nomCat : "T-shirt" }},
+    { idvetements: 2, nomvetements: "Robe : Zara", prixvetements: 499.999, couleur: "noir/rouge", disponible: "disponible", datevetements: new Date("12/17/2022"),Type : {idCat : 2, nomCat : "Robe"}},
+    { idvetements: 3, nomvetements: "Jackets : The North Face", prixvetements: 150.500, couleur: "noir/bleu/blanc", disponible: "non-disponible", datevetements: new Date("02/20/2023"),Type : {idCat : 3, nomCat : "Jacket"}} ];
   }
   listevetements(): vetements[] { return this.vetements; }
   ajoutervetements(prod: vetements) { this.vetements.push(prod); }
@@ -53,7 +53,7 @@ export class vetementsService {
       this.ajoutervetements(p); 
       this.triervetements(); 
     }
-    listeCategories():Categorie[] { return this.categories; }
-    consulterCategorie(id:number): Categorie{ 
-      return this.categories.find(cat => cat.idCat == id)!; }
+    listeType():Type[] { return this.Type; }
+    consulterType(id:number): Type{ 
+      return this.Type.find(cat => cat.idCat== id)!; }
 }

@@ -7,6 +7,9 @@ import { VetementsComponent } from './vetements/vetements.component';
 import { FormsModule } from '@angular/forms';
 import { AddVetementsComponent } from './add-vetements/add-vetements.component';
 import { UpdateVetementsComponent } from './update-vetements/update-vetements.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './services/forbidden/forbidden.component';
+
 
 @NgModule({
   declarations: [
@@ -14,6 +17,8 @@ import { UpdateVetementsComponent } from './update-vetements/update-vetements.co
     VetementsComponent,
     AddVetementsComponent,
     UpdateVetementsComponent,
+    LoginComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,
