@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   users: User[] = [{"username":"admin","password":"123","roles":['ADMIN']}, 
-                  {"username":"baha","password":"123","roles":['USER']} ];
+                  {"username":"baha","password":"123","roles":['USER']},
+                  {"username":"lotfi","password":"123","roles":['AGENT']}];
   public loggedUser!:string;
   public isloggedIn: Boolean = false; 
   public roles!:string[];
@@ -37,8 +38,23 @@ export class AuthService {
   isAdmin():Boolean{ if (!this.roles) //this.roles== undefiened 
   return false; return (this.roles.indexOf('ADMIN') >-1); }
   setLoggedUserFromLocalStorage(login : string) { 
-    this.loggedUser = login; this.isloggedIn = true; 
+    this.loggedUser = login;
+    this.isloggedIn = true; 
     this.getUserRoles(login); } 
-    getUserRoles(username :string){ this.users.forEach((curUser) => { if( curUser.username == username ) { this.roles = curUser.roles; } });
+    getUserRoles(username :string){ this.users.forEach((curUser) => { 
+      if( curUser.username == username ) { 
+        this.roles = curUser.roles; } });
+}
+
+isAgent():Boolean{ if (!this.roles) //this.roles== undefiened 
+  return false; return (this.roles.indexOf('AGENT') >-1); }*
+
+  setLoggedUserFromLocalStoragee(login : string) { 
+    this.loggedUser = login;
+    this.isloggedIn = true; 
+    this.getUserRoles(login); } 
+    getUserRoless(username :string){ this.users.forEach((curUser) => { 
+      if( curUser.username == username ) { 
+        this.roles = curUser.roles; } });
 }
 }

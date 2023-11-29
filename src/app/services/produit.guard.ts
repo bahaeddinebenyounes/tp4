@@ -13,7 +13,7 @@ export class ProduitGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): boolean {
-    if (this.authService.isAdmin())
+    if (this.authService.isAdmin()||this.authService.isAgent())
       return true;
     else {
       this.router.navigate(['app-forbidden']);

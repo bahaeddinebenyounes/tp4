@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { vetements } from '../model/vetements.model';
 import { Type } from '../model/Type.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +57,36 @@ export class vetementsService {
     listeType():Type[] { return this.Type; }
     consulterType(id:number): Type{ 
       return this.Type.find(cat => cat.idCat== id)!; }
-}
+
+
+  
+    rechercherParType(idCat: number): vetements[] {
+    console.log("Selected genre ID (Type):", typeof idCat); 
+
+    const filterevet = this.vetements.filter(vet => {
+      console.log("idcat",idCat);
+      console.log("batata", vet.Type.idCat);
+      console.log("Concert with Genre:", vet);
+      return vet.Type.idCat == idCat;
+    });
+    console.log("Filtered Concerts:", filterevet);
+
+    if (filterevet.length === 0) {
+      console.log("Aucun concert trouvé");
+    }
+
+    return filterevet;
+  }
+
+  rechercherParNom(nomvetements: String): vetements[] {
+    const filterevet = this.vetements.filter(vet => {
+      return vet.nomvetements.toLowerCase().includes(nomvetements.toLowerCase());
+    });
+    console.log("Filtered Concerts:", filterevet);
+    return filterevet;
+  }
+      
+    }
+
+     
+

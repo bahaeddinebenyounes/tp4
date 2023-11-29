@@ -14,7 +14,7 @@
      <td>{{vetements.datevetements | date:'dd/MM/yyyy'}}</td>
      <td>{{vetements.Type.nomCat}}</td>
      <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimervetements(vetements)">Supprimer</a></td>
-     <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updatevetements',vetements.idvetements]">Modifier</a></td>
+     <td><a *ngIf="authService.isAdmin() || authService.isAgent()" class="btn btn-success" [routerLink]="['/updatevetements',vetements.idvetements]">Modifier</a></td>
      </tr>
      </tbody>
      </table>

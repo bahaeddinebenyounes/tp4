@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class VetementsComponent {
   vetements   : vetements[];
   constructor(private vetementsService: vetementsService,
-    public authService: AuthService) {
+    public authService: AuthService ) {
     this.vetements = vetementsService.listevetements();
   console.log(this.vetements);
   }
