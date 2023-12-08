@@ -28,11 +28,11 @@
             <label>Date création</label> <input type="date" [(ngModel)]="currentvetements.datevetements"
                 name="dateCreation" class="form-control">
         </div>
-        <div class="col-sm-4 col-md-4 col-lg-4"> Type 
+            <div class="col-sm-4 col-md-4 col-lg-4"> Type 
             <select class="form-control form-control-lg" id="idCat" name="idCat"
                 [(ngModel)]="updatedCatId">
                 <option *ngFor="let cat of Type" [value]="cat.idCat"> {{cat.nomCat}} </option>
-            </select> </div>
+            </select> </div> 
         <div class="mt-2"> <button type="submit" (click)="updatevetements()" class="btn btn-success"
                 routerLink="/vetements">Modifier</button>
         </div>

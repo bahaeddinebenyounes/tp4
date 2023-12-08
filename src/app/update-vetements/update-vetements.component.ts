@@ -17,11 +17,15 @@ export class UpdateVetementsComponent implements OnInit {
     private router: Router,
     private vetementsService: vetementsService) { }
   ngOnInit(): void {
-    this.Type = this.vetementsService.listeType(); 
-    this.currentvetements = this.vetementsService.consultervetements(this.activatedRoute.snapshot.params['id']); 
-    this.updatedCatId = this.currentvetements.Type.idCat;
+    this.vetementsService.listetype(). subscribe(cats => {
+      this.Type = cats; console.log(cats); });
+      this.vetementsService.consultervetements(this.activatedRoute.snapshot.params['id']). subscribe( prod =>{ 
+        this.currentvetements = prod; this.updatedCatId = this.currentvetements.type.idCat; } ) ;
   }
   updatevetements() {
-    this.currentvetements.Type=this.vetementsService.consulterType(this.updatedCatId); this.vetementsService.updatevetements(this.currentvetements); this.router.navigate(['vetements']);
-  }
+    this.currentvetements.type = this.Type.
+    find(cat => cat.idCat == this.updatedCatId)!; 
+    this.vetementsService.updateProduit(this.currentvetements).subscribe(prod => { 
+      this.router.navigate(['vetements']); } );
+  } 
 }

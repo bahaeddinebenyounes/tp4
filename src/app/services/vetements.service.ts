@@ -1,40 +1,38 @@
 import { Injectable } from '@angular/core';
 import { vetements } from '../model/vetements.model';
 import { Type } from '../model/Type.model';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const httpOptions = {
+  headers: new HttpHeaders( {'Content-Type': 'application/json'} ) };
 @Injectable({
   providedIn: 'root'
 })
 export class vetementsService {
-  vetements: vetements[];
-  Type :Type[];
-  constructor() {
-    this.Type=[ {idCat : 1, nomCat : "T-shirt"}, {idCat : 2, nomCat : "Robe"},{idCat : 3, nomCat : "Jacket"} ];
-    this.vetements = [
+  apiURL: string = 'http://localhost:8080/vetements/api';
+  vetements: vetements[]= [];
+ /*  Type :Type[]; */
+  constructor(private http : HttpClient) {
+    /* this.Type=[ {idCat : 1, nomCat : "T-shirt"}, {idCat : 2, nomCat : "Robe"},{idCat : 3, nomCat : "Jacket"} ]; */
+    /* this.vetements = [
     { idvetements: 1, nomvetements: "T-shirt : Calvin Klein", prixvetements: 100, couleur: "noir/rouge/blanc", disponible: "disponible", datevetements: new Date("01/14/2020"),Type : {idCat : 1, nomCat : "T-shirt" }},
     { idvetements: 2, nomvetements: "Robe : Zara", prixvetements: 499.999, couleur: "noir/rouge", disponible: "disponible", datevetements: new Date("12/17/2022"),Type : {idCat : 2, nomCat : "Robe"}},
-    { idvetements: 3, nomvetements: "Jackets : The North Face", prixvetements: 150.500, couleur: "noir/bleu/blanc", disponible: "non-disponible", datevetements: new Date("02/20/2023"),Type : {idCat : 3, nomCat : "Jacket"}} ];
+    { idvetements: 3, nomvetements: "Jackets : The North Face", prixvetements: 150.500, couleur: "noir/bleu/blanc", disponible: "non-disponible", datevetements: new Date("02/20/2023"),Type : {idCat : 3, nomCat : "Jacket"}} ]; */
   }
-  listevetements(): vetements[] { return this.vetements; }
-  ajoutervetements(prod: vetements) { this.vetements.push(prod); }
-  supprimervetements(prod: vetements) {
-    //supprimer le produit prod du tableau produits
-    const index = this.vetements.indexOf(prod, 0);
-    if (index > -1) {
-      this.vetements.splice(index, 1);
-    }
-    //ou Bien
-    /* this.produits.forEach((cur, index) => {
-    if(prod.idProduit === cur.idProduit) {
-    this.produits.splice(index, 1);
-    }
-    }); */
+  listevetements():Observable<vetements[]>{ 
+    return this.http.get<vetements[]>(this.apiURL);
   }
+  ajoutervetements(vet: vetements):Observable<vetements>{ 
+    return this.http.post<vetements>(this.apiURL, vet, httpOptions); 
+  }
+  supprimervetements(id : number) { 
+    const url = `${this.apiURL}/${id}`;
+    return this.http.delete(url, httpOptions); }
+
+
   vetement! : vetements;
-  consultervetements(id:number): vetements{
-    return this.vetements.find(p => p.idvetements == id)!; 
-   }
+  consultervetements(id: number): Observable<vetements> { const url = `${this.apiURL}/${id}`; return this.http.get<vetements>(url); }
    triervetements(){ 
     this.vetements = this.vetements.sort((n1,n2) => {
       let x1=n1.idvetements;
@@ -48,43 +46,20 @@ export class vetementsService {
       return 0; 
     }); 
     } 
-    updatevetements(p:vetements) { 
-      // console.log(p); 
-      this.supprimervetements(p); 
-      this.ajoutervetements(p); 
-      this.triervetements(); 
+    updateProduit(prod :vetements) : Observable<vetements> { return this.http.put<vetements>(this.apiURL, prod, httpOptions); }
+    listetype():Observable<Type[]>{ 
+      return this.http.get<Type[]>(this.apiURL+"/type"); 
     }
-    listeType():Type[] { return this.Type; }
-    consulterType(id:number): Type{ 
-      return this.Type.find(cat => cat.idCat== id)!; }
 
 
   
-    rechercherParType(idCat: number): vetements[] {
-    console.log("Selected genre ID (Type):", typeof idCat); 
+    rechercherPartype(idCat: number):Observable< vetements[]> { const url = 
+      `${this.apiURL}/vetscat/${idCat}`; 
+      return this.http.get<vetements[]>(url); }
 
-    const filterevet = this.vetements.filter(vet => {
-      console.log("idcat",idCat);
-      console.log("batata", vet.Type.idCat);
-      console.log("Concert with Genre:", vet);
-      return vet.Type.idCat == idCat;
-    });
-    console.log("Filtered Concerts:", filterevet);
-
-    if (filterevet.length === 0) {
-      console.log("Aucun concert trouvé");
-    }
-
-    return filterevet;
-  }
-
-  rechercherParNom(nomvetements: String): vetements[] {
-    const filterevet = this.vetements.filter(vet => {
-      return vet.nomvetements.toLowerCase().includes(nomvetements.toLowerCase());
-    });
-    console.log("Filtered Concerts:", filterevet);
-    return filterevet;
-  }
+      rechercherParNom(nom: string):Observable< vetements[]> { 
+        const url = `${this.apiURL}/vetsByName/${nom}`; 
+        return this.http.get<vetements[]>(url); }
       
     }
 

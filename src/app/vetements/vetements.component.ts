@@ -9,18 +9,31 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./vetements.component.css']
 })
 export class VetementsComponent {
-  vetements   : vetements[];
+  vetements   : any;
   constructor(private vetementsService: vetementsService,
     public authService: AuthService ) {
-    this.vetements = vetementsService.listevetements();
-  console.log(this.vetements);
+    /* this.vetements = vetementsService.listevetements(); */
+  /*console.log(this.vetements); */
   }
-  supprimervetements(p: vetements) {
-    //console.log(p);
-    let conf = confirm("Etes-vous sûr ?");
-    if (conf)
-    this.vetementsService.supprimervetements(p);
+  
+  ngOnInit():void{
+     this.vetementsService.listevetements().subscribe(vets => 
+      { console.log(vets); 
+        for(let i of vets){
+          console.log(i.type.nomCat)
+        }
+        this.vetements = vets; }); 
+
+
+        
   }
+  
+  chargervetements(){ this.vetementsService.listevetements().subscribe(vet => { console.log(vet); this.vetements = vet; }); }
+  supprimervetements(p: vetements) { 
+    let conf = confirm("Etes-vous sûr ?"); 
+    if (conf) this.vetementsService.supprimervetements(p.idvetements).subscribe(() => {
+       console.log("vetements supprimé"); this.chargervetements(); }); 
+      }
 }
 
 

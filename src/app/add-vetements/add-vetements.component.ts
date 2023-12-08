@@ -12,21 +12,24 @@ import { Type } from '../model/Type.model';
 export class AddVetementsComponent {
   newvetements = new vetements();
   message : string | undefined;
-  Type! : Type[];
+  type! : Type[];
   newIdCat! : number; 
   newType! : Type;
-;
-ngOnInit() {
-  console.log(this.newvetements);
-   this.Type = this.vetementsService.listeType(); }
+
 
   constructor(private vetementsService: vetementsService,private router:Router) {}
+
+
+  ngOnInit():void {
+    this.vetementsService.listetype(). 
+    subscribe(tp => {this.type = tp; 
+      console.log(tp); });
+     }
   addvetement(){ 
-    console.log(this.newvetements);
-    this.newType = this.vetementsService.consulterType(this.newIdCat);
-     this.newvetements.Type = this.newType; 
-     this.vetementsService.ajoutervetements(this.newvetements); 
-     this.router.navigate(['vetements']); }
+    this.newvetements.type = this.type.find(cat => cat.idCat == this.newIdCat)!; 
+    this.vetementsService.ajoutervetements(this.newvetements) .subscribe(vet => { 
+      console.log(vet); 
+      this.router.navigate(['vetements']); }); }
   }
   
  

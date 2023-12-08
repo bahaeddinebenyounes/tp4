@@ -1,3 +1,5 @@
 export class Type {
  idCat! : number; 
- nomCat! : string; }
+ nomCat! : string;
+ descriptionCat:string;
+}

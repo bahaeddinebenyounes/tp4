@@ -1,23 +1,23 @@
 <div class="container">
-     <div class="card shadow mb-4">
-     <div class="card-body">
-     <table class="table table-striped">
-     <tr> <th>Id</th><th>Nom</th> <th>Prix</th><th>couleur</th>
-     <th>disponibilité</th> <th>Date Création</th><th>type vetements</th> </tr>
-     <tbody *ngFor="let vetements of vetements">
-     <tr >
-     <td>{{vetements.idvetements}}</td>
-     <td>{{vetements.nomvetements}}</td>
-     <td>{{vetements.prixvetements}}</td>
-     <td>{{vetements.couleur}}</td>
-     <td>{{vetements.disponible}}</td>
-     <td>{{vetements.datevetements | date:'dd/MM/yyyy'}}</td>
-     <td>{{vetements.Type.nomCat}}</td>
-     <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimervetements(vetements)">Supprimer</a></td>
-     <td><a *ngIf="authService.isAdmin() || authService.isAgent()" class="btn btn-success" [routerLink]="['/updatevetements',vetements.idvetements]">Modifier</a></td>
-     </tr>
-     </tbody>
-     </table>
-     </div>
-     </div>
-     </div>
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+    <tr> <th>Id</th><th>Nom</th> <th>Prix</th><th>couleur</th>
+    <th>disponibilité</th> <th>Date Création</th><th>type vetements</th> </tr>
+    <tbody *ngFor="let vet of vetements">
+    <tr>
+    <td>{{vet.idvetements}}</td>
+    <td>{{vet.nomvetements}}</td>
+    <td>{{vet.prixvetements}}</td>
+    <td>{{vet.couleur}}</td>
+    <td>{{vet.disponible}}</td>
+    <td>{{vet.datevetements | date:'dd/MM/yyyy'}}</td>
+    <td>{{vet.type?.nomCat}}</td> 
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimervetements(vet)">Supprimer</a></td>
+    <td><a *ngIf="authService.isAdmin() || authService.isAgent()" class="btn btn-success" [routerLink]="['/updatevetements',vet.idvetements]">Modifier</a></td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>

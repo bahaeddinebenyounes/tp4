@@ -8,5 +8,5 @@ export class vetements
     prixvetements! : number; 
     datevetements! : Date ;
     disponible!    : string;
-    Type!          :Type;
+    type          :Type;
   }

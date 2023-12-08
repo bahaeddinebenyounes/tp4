@@ -11,18 +11,17 @@ import { vetements } from '../model/vetements.model';
 export class RechercheParVetementsComponent {
 vetements:vetements[]=[];
 IdCat!:number;
-Type:Type[]=[];
+type:Type[];
+types:Type[];
 ngOnInit(): void {
-  this.Type = this.vetementsService.listeType();
-  }
+  this.vetementsService.listetype().subscribe(cats => {
+    this.type = cats; 
+    console.log(cats);
+  });
+}
+
 constructor(private vetementsService:vetementsService){}
 onChange() {
-  console.log('Selected Type ID:', this.IdCat);
-
-  // Call the service to filter vetements based on the selected Type
-  this.vetements = this.vetementsService.rechercherParType(this.IdCat);
-
-  // Debugging statement
-  console.log('Filtered Vetements:', this.vetements);
+  this.vetementsService.rechercherPartype(this.IdCat).subscribe(prods =>{this.vetements=prods});
 }
 }

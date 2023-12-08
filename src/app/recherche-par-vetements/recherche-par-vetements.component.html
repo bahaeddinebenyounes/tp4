@@ -1,8 +1,8 @@
 <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-<label>Categories </label>
+<label>Type </label>
     <select class="form-control form-control-lg" id="idCat" name="idCat"
     [(ngModel)]="IdCat" (change)="onChange()">
-    <option *ngFor="let cat of Type" value="{{cat.idCat}}"> {{cat.nomCat}}</option>
+    <option *ngFor="let cat of type" value="{{cat.idCat}}"> {{cat.nomCat}}</option>
     </select>
 </div>
 <div class="container">
@@ -21,7 +21,7 @@
             <td>{{vetements.couleur}}</td>
             <td>{{vetements.disponible}}</td>
             <td>{{vetements.datevetements | date:'dd/MM/yyyy'}}</td>
-            <td>{{vetements.Type.nomCat}}</td>
+            <td>{{vetements.type.nomCat}}</td>
             </tr>
             </tbody>
             </table>

@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './services/forbidden/forbidden.component';
 import { RechercheParVetementsComponent } from './recherche-par-vetements/recherche-par-vetements.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
-import { SearchFilterPipe } from './search-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,12 +24,12 @@ import { SearchFilterPipe } from './search-filter.pipe';
     ForbiddenComponent,
     RechercheParVetementsComponent,
     RechercheParNomComponent,
-    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
